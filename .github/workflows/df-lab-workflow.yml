@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -28,7 +28,7 @@ jobs:
         with:
           run-settings-json: |
             {
-              "name": "GitHubAction-${{ github.workflow }}_${{ github.run_id }}_${{ github.run_attempt }}",
+              "name": "GitHubAction-${{ github.workflow }}${{ github.run_id }}${{ github.run_attempt }}",
               "projectArn": "Device Farm Workshop",
               "appArn": "aws-devicefarm-sample-app.apk",
               "devicePoolArn": "Top Devices",
@@ -72,4 +72,3 @@ jobs:
         with:
           name: AutomatedTestOutputFiles
           path: ${{ steps.RunTest.outputs.artifact-folder }}
-
